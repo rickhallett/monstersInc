@@ -1,0 +1,23 @@
+{
+  "name": "monstersinc",
+  "version": "1.0.0",
+  "description": "become the evil overlord",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "test-watch": "./node_modules/mocha/bin/mocha --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.11",
+    "yargs": "^12.0.5"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "sinon": "^7.2.3",
+    "chai": "^4.2.0"
+  }
+}
