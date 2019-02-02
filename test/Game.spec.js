@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-describe('Game', function() {
+xdescribe('Game', function() {
 
     it('can read in a command line argument and store this', function() {
         expect.fail();

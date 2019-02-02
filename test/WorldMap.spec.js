@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-describe('WorldMap', function() {
+xdescribe('WorldMap', function() {
 
     it('can create a JavaScript object representing the file', function() {
         expect.fail();
