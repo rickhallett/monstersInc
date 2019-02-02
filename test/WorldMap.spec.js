@@ -22,13 +22,13 @@ describe('WorldMap', function() {
         const expectedArray = [[ 'Ege', 'north=Dodala', 'south=Eludisnismu', 'east=Enolmu', 'west=Amasna' ]];
 
         let error = null;
-        try{
+        try {
             assert.deepStrictEqual(actualArray, expectedArray, "arrays equal");
         } catch(err) {
             error = err;
         }
 
-        expect(error).to.be.null;
+        expect(error).to.equal(null);
 
     });
 

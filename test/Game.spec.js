@@ -15,21 +15,19 @@ describe('Game', function() {
        game = new Game(FileProcessor, WorldMap, City, Monster);
     });
 
+    // TODO: find out how chai can test the function prototype
     describe('dependency injection', function() {
         it('connects to the FileReader class through dependency injection', function() {
-            expect(game.fileProcessor).to.be.an.instanceOf(FileProcessor);
+            expect(game.FileProcessor).to.equal(FileProcessor)
         });
+
 
         it('connects to the WorldMap class through dependency injection', function() {
-            expect(game.worldMap).to.be.an.instanceOf(WorldMap);
-        });
-
-        it('connects to the City class through dependency injection', function() {
-            expect(game.city).to.be.an.instanceOf(City);
+            expect(game.WorldMap).to.equal(WorldMap);
         });
 
         it('connects to the Monster class through dependency injection', function() {
-            expect(game.monster).to.be.an.instanceOf(Monster);
+            expect(game.Monster).to.equal(Monster);
         });
     });
 
