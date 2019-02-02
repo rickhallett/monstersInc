@@ -1,28 +1,57 @@
-const { expect } = require('chai');
+const { expect, assert } = require('chai');
+const FileProcessor = require('../lib/FileProcessor');
+const Game = require('../lib/Game');
+const WorldMap = require('../lib/WorldMap');
+const City = require('../lib/City');
+const Monster = require('../lib/Monster');
+const { smallWorldMapString, rootDir } = require('../constants');
+const smallWorldMapFile = `${rootDir}/world_map_small.txt`;
 
-xdescribe('Game', function() {
+describe('Game', function() {
 
-    it('can read in a command line argument and store this', function() {
+    let game;
+
+    beforeEach(function() {
+       game = new Game(FileProcessor, WorldMap, City, Monster);
+    });
+
+    it('connects to the FileReader class through dependency injection', function() {
+        expect(game.fileProcessor).to.be.an.instanceOf(FileProcessor);
+    });
+
+    it('connects to the WorldMap class through dependency injection', function() {
+        expect(game.worldMap).to.be.an.instanceOf(WorldMap);
+    });
+
+    it('connects to the City class through dependency injection', function() {
+        expect(game.city).to.be.an.instanceOf(City);
+    });
+
+    it('connects to the Monster class through dependency injection', function() {
+        expect(game.monster).to.be.an.instanceOf(Monster);
+    });
+
+    xit('can read in a command line argument and store this', function() {
         expect.fail();
     });
 
-    it('directs the game in ticks (turns)', function() {
+    xit('directs the game in ticks (turns)', function() {
         expect.fail();
     });
 
-    it('can generate N monsters', function() {
+    xit('can generate N monsters', function() {
         expect.fail();
     });
 
-    it('places monsters randomly on the world map', function() {
+    xit('places monsters randomly on the world map', function() {
         expect.fail();
     });
 
-    it('terminates if all the monsters have been destroyed', function() {
+    xit('terminates if all the monsters have been destroyed', function() {
         expect.fail();
     });
 
-    it('terminates if each remaining monster has moved 10,000 times', function() {
+    xit('terminates if each remaining monster has moved 10,000 times', function() {
         expect.fail();
     });
 
