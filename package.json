@@ -4,13 +4,13 @@
   "description": "become the evil overlord",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha",
     "test": "./node_modules/mocha/bin/mocha ",
     "test-watch": "./node_modules/mocha/bin/mocha --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.3",
     "chalk": "^2.4.2",
     "faker": "^4.1.0",
     "lodash": "^4.17.11",
