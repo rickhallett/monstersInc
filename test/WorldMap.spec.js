@@ -32,8 +32,30 @@ describe('WorldMap', function() {
 
     });
 
-    xit('can create a JavaScript object representing the file', function() {
-        expect.fail();
+    it('can create a JavaScript object representing the file', function() {
+        const fileStringArray = ['Ege north=Dodala south=Eludisnismu east=Enolmu west=Amasna'];
+        worldMap.constructMap(fileStringArray);
+
+        const node = {
+            Ege: {
+                north: 'Dodala',
+                south: 'Eludisnismu',
+                east: 'Enolmu',
+                west: 'Amasna'
+            }
+        };
+
+        const expectedMap = new Set();
+        expectedMap.add(node);
+
+        let error = null;
+        try {
+            assert.deepStrictEqual(worldMap.map, expectedMap, "maps are equal")
+        } catch (err) {
+            error = err;
+        }
+
+        expect(error).to.equal(null);
     });
 
     xit('has a city for every line of the read in file', function() {
