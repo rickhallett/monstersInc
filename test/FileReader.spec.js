@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+const { expect, assert } = require('chai');
 const FileProcessor = require('../lib/FileProcessor');
 const { smallWorldMapString, rootDir } = require('../constants');
 const smallWorldMapFile = `${rootDir}/world_map_small.txt`;
