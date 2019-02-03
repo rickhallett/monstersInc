@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 const assert = require('assert');
 const WorldMap = require('../lib/WorldMap');
+const City = require('../lib/City');
 
 describe('WorldMap', function() {
 
@@ -14,6 +15,10 @@ describe('WorldMap', function() {
         const WorldMap = require('../lib/WorldMap');
         const aNewWorldMap = new WorldMap();
         expect(aNewWorldMap).to.be.an.instanceOf(WorldMap);
+    });
+
+    it('connects to the City class via dependency injection', function() {
+       expect(worldMap.City).to.equal(City);
     });
 
     it('parseFileLines() seperates line into array', function() {
@@ -37,16 +42,20 @@ describe('WorldMap', function() {
         worldMap.constructMap(fileStringArray);
 
         const node = {
-            Ege: {
+            cityName: 'Ege',
+            cityLinks: {
                 north: 'Dodala',
                 south: 'Eludisnismu',
                 east: 'Enolmu',
-                west: 'Amasna'
-            }
+                west: 'Amasna',
+            },
+            occupiers: [],
         };
 
+        const city = new City(node);
+
         const expectedMap = new Set();
-        expectedMap.add(node);
+        expectedMap.add(city);
 
         let error = null;
         try {
