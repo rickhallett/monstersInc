@@ -102,6 +102,21 @@ describe('WorldMap', function() {
         });
     });
 
+    it('limits the number of monsters initialised in each city to 1', function(done) {
+        const game = new Game();
+        game.initialiseWorld(smallMapFile, false).then((res) => {
+            const monstersInEachCity = [];
+            res.map.forEach(city => {
+                monstersInEachCity.push(city.occupiers.length);
+            });
+
+            const maxOneMonster = monstersInEachCity.every(count => count < 2);
+
+            expect(maxOneMonster).to.equal(true);
+            done();
+        });
+    });
+
     xit('can calculate the remaining number of monsters', function() {
         expect.fail();
     });
