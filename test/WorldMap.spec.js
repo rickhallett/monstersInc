@@ -61,8 +61,8 @@ describe('WorldMap', function() {
 
         const city = new City(node);
 
-        const expectedMap = new Set();
-        expectedMap.add(city);
+        const expectedMap = new Map();
+        expectedMap.set(node.cityName, city);
 
         let error = null;
         try {
