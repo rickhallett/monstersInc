@@ -1,3 +1,4 @@
+const { it } = require('mocha');
 const { expect } = require('chai');
 const assert = require('assert');
 const Game = require('../lib/Game');
@@ -73,25 +74,31 @@ describe('WorldMap', function() {
         expect(error).to.equal(null);
     });
 
+    // TODO: find a way around of not passing a testing conditional into initialiseWorld()
+    // without this boolean, maps with destroyed cities will fail this test
     it('has a city for every line of the read in the small file', function() {
         const game = new Game();
-        game.initialiseWorld(smallMapFile).then((res) => {
-            expect(res.map.size).to.equal(28)
+        game.initialiseWorld(smallMapFile, true).then((res) => {
+            expect(res.map.size).to.equal(28);
         });
     });
 
-    xit('has a city for every line of the read in the medium file', function() {
+    // TODO: find a way around of not passing a testing conditional into initialiseWorld()
+    // without this boolean, maps with destroyed cities will fail this test
+    it('has a city for every line of the read in the medium file', function(done) {
         const game = new Game();
-        game.initialiseWorld(mediumMapFile).then((res) => {
-            expect(res.map.size).to.equal(6763)
+        game.initialiseWorld(mediumMapFile, true).then((res) => {
+            expect(res.map.size).to.equal(6763);
+            done();
         });
     });
 
     // TODO: how can we deep search a Set for property values?
-    xit('ignores file line entries that have duplicated cities', function() {
+    xit('ignores file line entries that have duplicated cities', function(done) {
         const game = new Game();
         game.initialiseWorld(largeMapFileWithDuplicates).then((res) => {
-            expect(res.map.size).to.equal(6763)
+            expect(res.map.size).to.equal(6763);
+            done();
         });
     });
 

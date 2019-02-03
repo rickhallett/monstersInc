@@ -1,4 +1,5 @@
-const { expect, assert } = require('chai');
+const { it } = require('mocha');
+const { expect } = require('chai');
 const FileProcessor = require('../lib/FileProcessor');
 const Game = require('../lib/Game');
 const WorldMap = require('../lib/WorldMap');
@@ -40,6 +41,10 @@ describe('Game', function() {
     });
 
     xit('can generate N monsters', function() {
+        expect.fail();
+    });
+
+    xit('can pass the monsters to the worldMap', function() {
         expect.fail();
     });
 
