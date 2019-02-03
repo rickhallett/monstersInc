@@ -1,7 +1,13 @@
 const { expect } = require('chai');
 const assert = require('assert');
+const Game = require('../lib/Game');
 const WorldMap = require('../lib/WorldMap');
 const City = require('../lib/City');
+const constants = require('../constants');
+const smallMapFile = `${constants.rootDir}/world_map_small.txt`;
+const mediumMapFile = `${constants.rootDir}/world_map_medium.txt`;
+const largeMapFileWithDuplicates = `${constants.rootDir}/world_map_large_with_duplicates.txt`;
+
 
 describe('WorldMap', function() {
 
@@ -67,8 +73,26 @@ describe('WorldMap', function() {
         expect(error).to.equal(null);
     });
 
-    xit('has a city for every line of the read in file', function() {
-        expect.fail();
+    it('has a city for every line of the read in the small file', function() {
+        const game = new Game();
+        game.initialiseWorld(smallMapFile).then((res) => {
+            expect(res.map.size).to.equal(28)
+        });
+    });
+
+    xit('has a city for every line of the read in the medium file', function() {
+        const game = new Game();
+        game.initialiseWorld(mediumMapFile).then((res) => {
+            expect(res.map.size).to.equal(6763)
+        });
+    });
+
+    // TODO: how can we deep search a Set for property values?
+    xit('ignores file line entries that have duplicated cities', function() {
+        const game = new Game();
+        game.initialiseWorld(largeMapFileWithDuplicates).then((res) => {
+            expect(res.map.size).to.equal(6763)
+        });
     });
 
     xit('can calculate the remaining number of monsters', function() {
