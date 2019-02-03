@@ -13,7 +13,7 @@ describe('Game', function() {
     let game;
 
     beforeEach(function() {
-       game = new Game(FileProcessor, WorldMap, City, Monster);
+       game = new Game(100);
     });
 
     // TODO: find out how chai can test the function prototype
