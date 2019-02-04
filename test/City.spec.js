@@ -78,7 +78,7 @@ describe('City', function() {
             sinon.stub(console, 'log');
         }
 
-        
+
         const initialMonsterQuantity = 100;
         const game = new Game(initialMonsterQuantity);
         const fileProcessor = new FileProcessor(smallMapFile);
@@ -106,9 +106,9 @@ describe('City', function() {
             const whatWasAnOverOccupiedCity = mapWithOneDestroyCycle.map.get(anOverOccupiedCity.cityName);
 
             expect(whatWasAnOverOccupiedCity).to.equal(undefined);
-            done();
 
             console.log.restore();
+            done();
         });
     });
 
