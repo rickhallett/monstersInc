@@ -16,12 +16,11 @@ describe('Game', function() {
        game = new Game(100);
     });
 
-    // TODO: find out how chai can test the function prototype
+    // TODO: find out how mocha/chai can make these tests more meaningful
     describe('dependency injection', function() {
         it('connects to the FileReader class through dependency injection', function() {
             expect(game.FileProcessor).to.equal(FileProcessor)
         });
-
 
         it('connects to the WorldMap class through dependency injection', function() {
             expect(game.WorldMap).to.equal(WorldMap);
@@ -32,16 +31,9 @@ describe('Game', function() {
         });
     });
 
-    xit('can read in a command line argument and store this', function() {
-        expect.fail();
-    });
-
-    xit('directs the game in ticks (turns)', function() {
-        expect.fail();
-    });
-
-    xit('can generate N monsters', function() {
-        expect.fail();
+    it('can generate N monsters', function() {
+        const monsters = game.generateMonsters();
+        expect(monsters.length).to.equal(100);
     });
 
     xit('can pass the monsters to the worldMap', function() {
