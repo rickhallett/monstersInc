@@ -1,12 +1,13 @@
 const chalk = require('chalk');
 const Game = require('./lib/Game');
+const FileProcessor = require('./lib/FileProcessor');
 const mediumMapFile = './world_map_medium.txt';
 
 // Initialise Game Process
 // TODO: using a single stack will overflow at about new Game(4550); find way of creating async stacks or using node clusters to exceed this
-// SOLUTION ATTEMPT 1: use setTimeout to async recurse populateMap every thousanth call. Allows 75,000+ monsters but reduces number of cities destroyed...
+// SOLUTION ATTEMPT 1: use setTimeout to async recurse populateMap every thousandth call. Allows 75,000+ monsters but reduces number of cities destroyed...
 const gameInstance = new Game(process.argv[2] || 4535);
-const { executeClockCycleMove, worldMap } = gameInstance.initialiseWorld(mediumMapFile)
+gameInstance.initialiseWorld(mediumMapFile)
     .then(res => {
         let worldMap = res.worldMap;
 
@@ -25,6 +26,9 @@ const { executeClockCycleMove, worldMap } = gameInstance.initialiseWorld(mediumM
             console.log(chalk.green('The world has been destroyed! You have been invited to the Evil Overlord evil party!!'));
             console.log(chalk.green.bold('This is all you ever really wanted :)'));
         }
+
+        const fileProcessor = new FileProcessor();
+        fileProcessor.printToFile(worldMap);
 
     });
 

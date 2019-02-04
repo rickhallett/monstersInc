@@ -78,11 +78,10 @@ describe('City', function() {
             sinon.stub(console, 'log');
         }
 
-
         const initialMonsterQuantity = 100;
         const game = new Game(initialMonsterQuantity);
         const fileProcessor = new FileProcessor(smallMapFile);
-        const worldMap = new WorldMap(false);
+        const worldMap = new WorldMap();
 
         fileProcessor.init().then(res => {
             const fileLines = res;
