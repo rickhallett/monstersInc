@@ -1,6 +1,7 @@
 const { it } = require('mocha');
 const { expect } = require('chai');
 const cloneDeep = require('lodash/cloneDeep');
+const Game = require('../lib/Game');
 const FileProcessor = require('../lib/FileProcessor');
 const WorldMap = require('../lib/WorldMap');
 const constants = require('../constants');
@@ -17,7 +18,7 @@ describe('City', function() {
             const fileLines = res;
             const constructedMap = worldMap.constructMap(fileLines);
             const firstExpectedCityName = 'E';
-            const firstExpectedCity = constructedMap.get(firstExpectedCityName);
+            const firstExpectedCity = constructedMap.map.get(firstExpectedCityName);
 
             expect(firstExpectedCity.cityName).to.equal('E');
             done();
@@ -31,7 +32,7 @@ describe('City', function() {
             const fileLines = res;
             const constructedMap = worldMap.constructMap(fileLines);
             const firstExpectedCityName = 'E';
-            const firstExpectedCity = constructedMap.get(firstExpectedCityName);
+            const firstExpectedCity = constructedMap.map.get(firstExpectedCityName);
             const expectedCityLinks = {
                 north: 'Mu',
                 south: 'Aninige',
@@ -44,8 +45,27 @@ describe('City', function() {
         });
     });
 
-    xit('is aware if a monster is occupying it', function() {
-        expect.fail();
+    it('is aware if a monster is occupying it', function(done) {
+        const initialMonsterQuantity = 100;
+        const game = new Game(initialMonsterQuantity);
+        const fileProcessor = new FileProcessor(smallMapFile);
+        const worldMap = new WorldMap();
+        fileProcessor.init().then(res => {
+            const fileLines = res;
+            const constructedMap = worldMap.constructMap(fileLines);
+
+            const monsters = game.generateMonsters();
+            game.injectMonstersIntoMap(monsters, constructedMap);
+            // worldMap.populateMap(monsters);
+
+
+            const firstExpectedCityName = 'E';
+            const firstExpectedCity = constructedMap.map.get(firstExpectedCityName);
+            const expectedMonsters = firstExpectedCity.occupiers;
+
+            expect(expectedMonsters).to.be.an('array');
+            done();
+        });
     });
 
     xit('is destroyed if two monsters are occupying it', function() {
