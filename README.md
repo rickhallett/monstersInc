@@ -1,5 +1,9 @@
 ## monstersInc
 
+> Running Instructions: `node index.js N` where N is integer 1 0 4535 
+
+> To run tests `npm test`
+
 You are given a map containing the names of cities in the non-existent
 world of X.  The map is in a file, with one city per line.  The city
 name is first, followed by 1-4 directions (north, south, east, or
