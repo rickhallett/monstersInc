@@ -3,7 +3,9 @@ const Game = require('./lib/Game');
 const mediumMapFile = './world_map_medium.txt';
 
 // Initialise Game Process
-const gameInstance = new Game(4540);
+// TODO: using a single stack will overflow at about new Game(4550); find way of creating async stacks or using node clusters to exceed this
+// SOLUTION ATTEMPT 1: use setTimeout to async recurse populateMap every thousanth call. Allows 75,000+ monsters but reduces number of cities destroyed...
+const gameInstance = new Game(4535);
 const { executeClockCycleMove, worldMap } = gameInstance.initialiseWorld(mediumMapFile)
     .then(res => {
         let worldMap = res.worldMap;
