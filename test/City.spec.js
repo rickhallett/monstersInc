@@ -1,5 +1,6 @@
 const { it } = require('mocha');
 const { expect } = require('chai');
+const cloneDeep = require('lodash/cloneDeep');
 const FileProcessor = require('../lib/FileProcessor');
 const WorldMap = require('../lib/WorldMap');
 const constants = require('../constants');
@@ -23,8 +24,24 @@ describe('City', function() {
         });
     });
 
-    xit('has key-value links to other cities', function() {
-        expect.fail();
+    it('has key-value links to other cities', function(done) {
+        const fileProcessor = new FileProcessor(smallMapFile);
+        const worldMap = new WorldMap();
+        fileProcessor.init().then(res => {
+            const fileLines = res;
+            const constructedMap = worldMap.constructMap(fileLines);
+            const firstExpectedCityName = 'E';
+            const firstExpectedCity = constructedMap.get(firstExpectedCityName);
+            const expectedCityLinks = {
+                north: 'Mu',
+                south: 'Aninige',
+                east: 'Dimilu',
+                west: 'Asmismu'
+            };
+
+            expect(firstExpectedCity.cityLinks).to.deep.equal(expectedCityLinks);
+            done();
+        });
     });
 
     xit('is aware if a monster is occupying it', function() {
